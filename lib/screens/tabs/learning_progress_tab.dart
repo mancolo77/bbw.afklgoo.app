@@ -37,17 +37,17 @@ class _LearningProgressTabState extends State<LearningProgressTab> {
         backgroundColor: AppTheme.surfaceCard,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppTheme.cardRadius)),
         title: const Text(
-          'Сбросить прогресс обучения?',
+          'Reset Learning Progress?',
           style: TextStyle(fontWeight: FontWeight.bold, color: AppTheme.textMain),
         ),
         content: const Text(
-          'Все отметки об изученных темах, закладки и лучшие результаты тестов будут обнулены.',
+          'All studied topics, bookmarks, and test scores will be reset.',
           style: TextStyle(color: AppTheme.textSecondary),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Отмена', style: TextStyle(color: AppTheme.textSecondary)),
+            child: const Text('Cancel', style: TextStyle(color: AppTheme.textSecondary)),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -58,7 +58,7 @@ class _LearningProgressTabState extends State<LearningProgressTab> {
               Navigator.pop(ctx);
               _service.resetProgress();
             },
-            child: const Text('Сбросить', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+            child: const Text('Reset', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
           ),
         ],
       ),
@@ -75,7 +75,7 @@ class _LearningProgressTabState extends State<LearningProgressTab> {
     final savedTopics = allTopics.where((t) => _service.savedTopicIds.contains(t.id)).toList();
 
     // Sport Progress
-    final sports = ['Футбол', 'Баскетбол', 'Волейбол', 'Теннис'];
+    final sports = ['Football', 'Basketball', 'Volleyball', 'Tennis'];
 
     return Scaffold(
       backgroundColor: AppTheme.background,
@@ -93,7 +93,7 @@ class _LearningProgressTabState extends State<LearningProgressTab> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Моё обучение',
+                        'My Learning',
                         style: TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,
@@ -102,7 +102,7 @@ class _LearningProgressTabState extends State<LearningProgressTab> {
                       ),
                       SizedBox(height: 2),
                       Text(
-                        'Личный прогресс, тесты и закладки',
+                        'Personal progress, quizzes and bookmarks',
                         style: TextStyle(
                           fontSize: 13,
                           color: AppTheme.textSecondary,
@@ -113,7 +113,7 @@ class _LearningProgressTabState extends State<LearningProgressTab> {
                   IconButton(
                     icon: const Icon(Icons.refresh_rounded, color: AppTheme.textSecondary),
                     onPressed: _confirmReset,
-                    tooltip: 'Сбросить прогресс',
+                    tooltip: 'Reset progress',
                   ),
                 ],
               ),
@@ -140,7 +140,7 @@ class _LearningProgressTabState extends State<LearningProgressTab> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'ИЗУЧЕНО ТЕМ',
+                          'TOPICS COMPLETED',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -155,7 +155,7 @@ class _LearningProgressTabState extends State<LearningProgressTab> {
                             borderRadius: BorderRadius.circular(6),
                           ),
                           child: Text(
-                            '$studiedTopicsCount из $totalTopics',
+                            '$studiedTopicsCount of $totalTopics',
                             style: const TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
@@ -177,7 +177,7 @@ class _LearningProgressTabState extends State<LearningProgressTab> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      '${(overallProgress * 100).toInt()}% спортивных правил освоено',
+                      '${(overallProgress * 100).toInt()}% of sports rules mastered',
                       style: const TextStyle(fontSize: 12, color: Colors.white),
                     ),
                   ],
@@ -187,7 +187,7 @@ class _LearningProgressTabState extends State<LearningProgressTab> {
 
               // Progress by categories
               const Text(
-                'Прогресс по категориям',
+                'Progress by Sport',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -226,7 +226,7 @@ class _LearningProgressTabState extends State<LearningProgressTab> {
                                 ),
                               ),
                               Text(
-                                '$spStudied из ${spTopics.length}',
+                                '$spStudied of ${spTopics.length}',
                                 style: const TextStyle(fontSize: 12, color: AppTheme.primary, fontWeight: FontWeight.bold),
                               ),
                             ],
@@ -251,7 +251,7 @@ class _LearningProgressTabState extends State<LearningProgressTab> {
 
               // Best test scores
               const Text(
-                'Лучшие результаты тестов',
+                'Best Quiz Scores',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -299,12 +299,12 @@ class _LearningProgressTabState extends State<LearningProgressTab> {
               ),
               const SizedBox(height: 24),
 
-              // Saved topics (избранное)
+              // Saved topics (bookmarks)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    'Сохранённые материалы',
+                    'Saved Materials',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -312,7 +312,7 @@ class _LearningProgressTabState extends State<LearningProgressTab> {
                     ),
                   ),
                   Text(
-                    '${savedTopics.length} в закладках',
+                    '${savedTopics.length} bookmarked',
                     style: const TextStyle(fontSize: 12, color: AppTheme.textSecondary),
                   ),
                 ],
@@ -333,12 +333,12 @@ class _LearningProgressTabState extends State<LearningProgressTab> {
                         const Icon(Icons.bookmark_border_rounded, size: 36, color: AppTheme.textSecondary),
                         const SizedBox(height: 8),
                         const Text(
-                          'Закладок пока нет',
+                          'No bookmarks yet',
                           style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: AppTheme.textMain),
                         ),
                         const SizedBox(height: 4),
                         const Text(
-                          'Сохраняйте интересные правила в «Справочнике»',
+                          'Save rules from the Handbook for quick review',
                           style: TextStyle(fontSize: 12, color: AppTheme.textSecondary),
                         ),
                         const SizedBox(height: 12),
@@ -349,7 +349,7 @@ class _LearningProgressTabState extends State<LearningProgressTab> {
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                           ),
                           onPressed: widget.onNavigateToHandbook,
-                          child: const Text('Перейти в справочник'),
+                          child: const Text('Go to Handbook'),
                         ),
                       ],
                     ),
@@ -411,4 +411,3 @@ class _LearningProgressTabState extends State<LearningProgressTab> {
     );
   }
 }
-

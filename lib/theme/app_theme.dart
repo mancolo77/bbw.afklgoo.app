@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  // ПАЛИТРА ПО ТЗ (BW / Betwinner - bw.africamain.app):
-  // • #F4F7F5 — основной светлый фон.
-  // • #FFFFFF — карточки статей, матчей и викторин.
-  // • #E2EDE7 — фон фильтров и второстепенных блоков.
-  // • #C9DDD3 — разделители и контуры.
-  // • #062B20 — тёмно-зелёная навигация и контрастные баннеры.
-  // • #155A43 — дополнительные зелёные поверхности.
-  // • #14805C — основной зелёный акцент: кнопки и активные элементы.
-  // • #FFD51A — жёлтый акцент: шкалы прогресса, избранное и значки достижений.
-  // • #172D25 — основной текст на светлом фоне.
-  // • #60736A — второстепенные подписи.
-  // • #FFFFFF — текст на зелёных поверхностях.
-  // На жёлтых кнопках использовать текст #062B20.
+  // Brand Palette:
+  // • #F4F7F5 — main light background
+  // • #FFFFFF — cards
+  // • #E2EDE7 — filters and secondary blocks background
+  // • #C9DDD3 — borders and dividers
+  // • #062B20 — dark green navigation and contrast blocks
+  // • #155A43 — secondary green surfaces
+  // • #14805C — primary green accent: buttons and active elements
+  // • #FFD51A — yellow accent: progress bars, favorites, achievement badges
+  // • #172D25 — primary text on light background
+  // • #60736A — secondary text
+  // • #FFFFFF — text on green surfaces
 
   static const Color background = Color(0xFFF4F7F5);
   static const Color surfaceCard = Color(0xFFFFFFFF);
@@ -21,14 +20,14 @@ class AppTheme {
   static const Color border = Color(0xFFC9DDD3);
   static const Color darkNav = Color(0xFF062B20);
   static const Color greenSurface = Color(0xFF155A43);
-  static const Color primary = Color(0xFF14805C); // Зеленый акцент: кнопки и элементы
-  static const Color accentYellow = Color(0xFFFFD51A); // Желтый акцент: прогресс, избранное, бейджи
+  static const Color primary = Color(0xFF14805C); // Green accent: buttons & active elements
+  static const Color accentYellow = Color(0xFFFFD51A); // Yellow accent: progress & badges
   static const Color textMain = Color(0xFF172D25);
   static const Color textSecondary = Color(0xFF60736A);
   static const Color onPrimary = Color(0xFFFFFFFF);
   static const Color onYellow = Color(0xFF062B20);
 
-  // Совместимость
+  // Compatibility aliases
   static const Color surface = surfaceCard;
   static const Color surfaceElevated = surfaceSecondary;
   static const Color surfaceBorder = border;

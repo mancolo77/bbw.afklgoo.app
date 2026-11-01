@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../services/local_notification_service.dart';
 import '../theme/app_theme.dart';
 import 'tabs/handbook_tab.dart';
 import 'tabs/knowledge_check_tab.dart';
@@ -21,10 +20,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   void initState() {
     super.initState();
     _currentIndex = widget.initialIndex;
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      LocalNotificationService.instance.requestPermission();
-    });
   }
 
   void _navigateToTab(int index) {
@@ -70,17 +65,17 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             BottomNavigationBarItem(
               icon: Icon(Icons.menu_book_outlined),
               activeIcon: Icon(Icons.menu_book_rounded),
-              label: 'Справочник',
+              label: 'Handbook',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.quiz_outlined),
               activeIcon: Icon(Icons.quiz_rounded),
-              label: 'Проверка знаний',
+              label: 'Knowledge Check',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.school_outlined),
               activeIcon: Icon(Icons.school_rounded),
-              label: 'Моё обучение',
+              label: 'My Learning',
             ),
           ],
         ),

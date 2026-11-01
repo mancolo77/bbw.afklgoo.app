@@ -11,9 +11,9 @@ class HandbookTab extends StatefulWidget {
 
 class _HandbookTabState extends State<HandbookTab> {
   final _rulesService = SportsRulesService();
-  String _selectedSport = 'Все';
+  String _selectedSport = 'All';
   String _searchQuery = '';
-  final List<String> _sports = ['Все', 'Футбол', 'Баскетбол', 'Волейбол', 'Теннис'];
+  final List<String> _sports = ['All', 'Football', 'Basketball', 'Volleyball', 'Tennis'];
 
   @override
   void initState() {
@@ -127,7 +127,7 @@ class _HandbookTabState extends State<HandbookTab> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
-                            'Источник: Официальные правила ${topic.sport == "Футбол" ? "IFAB/FIFA" : topic.sport == "Баскетбол" ? "FIBA" : topic.sport == "Волейбол" ? "FIVB" : "ITF"} (актуальная редакция 2025/2026).',
+                            'Source: Official Rules of ${topic.sport == "Football" ? "IFAB/FIFA" : topic.sport == "Basketball" ? "FIBA" : topic.sport == "Volleyball" ? "FIVB" : "ITF"} (current 2025/2026 edition).',
                             style: const TextStyle(fontSize: 11, color: AppTheme.textSecondary, height: 1.4),
                           ),
                         ),
@@ -154,7 +154,7 @@ class _HandbookTabState extends State<HandbookTab> {
                       },
                       icon: Icon(isStudied ? Icons.check_circle_rounded : Icons.check_rounded),
                       label: Text(
-                        isStudied ? 'Изучено (нажмите для отмены)' : 'Отметить как изученное',
+                        isStudied ? 'Studied (tap to unmark)' : 'Mark as Studied',
                         style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -171,13 +171,13 @@ class _HandbookTabState extends State<HandbookTab> {
 
   IconData _iconForSport(String sport) {
     switch (sport) {
-      case 'Баскетбол':
+      case 'Basketball':
         return Icons.sports_basketball_rounded;
-      case 'Волейбол':
+      case 'Volleyball':
         return Icons.sports_volleyball_rounded;
-      case 'Теннис':
+      case 'Tennis':
         return Icons.sports_tennis_rounded;
-      case 'Футбол':
+      case 'Football':
       default:
         return Icons.sports_soccer_rounded;
     }
@@ -187,7 +187,7 @@ class _HandbookTabState extends State<HandbookTab> {
   Widget build(BuildContext context) {
     final all = _rulesService.topics;
     final filtered = all.where((t) {
-      final matchesSport = _selectedSport == 'Все' || t.sport == _selectedSport;
+      final matchesSport = _selectedSport == 'All' || t.sport == _selectedSport;
       final matchesSearch = _searchQuery.isEmpty ||
           t.title.toLowerCase().contains(_searchQuery.toLowerCase()) ||
           t.terms.toLowerCase().contains(_searchQuery.toLowerCase()) ||
@@ -210,7 +210,7 @@ class _HandbookTabState extends State<HandbookTab> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Справочник',
+                          'Handbook',
                           style: TextStyle(
                             fontSize: 26,
                             fontWeight: FontWeight.bold,
@@ -219,7 +219,7 @@ class _HandbookTabState extends State<HandbookTab> {
                         ),
                         SizedBox(height: 2),
                         Text(
-                          'Официальные правила командных видов спорта',
+                          'Official rules of team and court sports',
                           style: TextStyle(
                             fontSize: 13,
                             color: AppTheme.textSecondary,
@@ -232,7 +232,7 @@ class _HandbookTabState extends State<HandbookTab> {
               ),
             ),
 
-            // Зелёный блок «Что изучим сегодня?» с жёлтым геометрическим акцентом (по ТЗ)
+            // Green banner with yellow accent
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Container(
@@ -270,7 +270,7 @@ class _HandbookTabState extends State<HandbookTab> {
                           Row(
                             children: [
                               Text(
-                                'Что изучим сегодня?',
+                                'What will we study today?',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -283,7 +283,7 @@ class _HandbookTabState extends State<HandbookTab> {
                           ),
                           SizedBox(height: 2),
                           Text(
-                            'Выберите тему ниже или пройдите короткий тест знаний',
+                            'Select a topic below or take a quick knowledge check',
                             style: TextStyle(fontSize: 12, color: Colors.white70),
                           ),
                         ],
@@ -301,7 +301,7 @@ class _HandbookTabState extends State<HandbookTab> {
               child: TextField(
                 onChanged: (v) => setState(() => _searchQuery = v),
                 decoration: InputDecoration(
-                  hintText: 'Поиск по правилам, терминам (офсайд, фол)...',
+                  hintText: 'Search rules, terms (offside, foul)...',
                   hintStyle: const TextStyle(fontSize: 13, color: AppTheme.textSecondary),
                   prefixIcon: const Icon(Icons.search, size: 20, color: AppTheme.textSecondary),
                   filled: true,
@@ -364,12 +364,12 @@ class _HandbookTabState extends State<HandbookTab> {
                           Icon(Icons.search_off_rounded, size: 52, color: AppTheme.textSecondary.withAlpha(120)),
                           const SizedBox(height: 10),
                           const Text(
-                            'Материалы не найдены',
+                            'No materials found',
                             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppTheme.textMain),
                           ),
                           const SizedBox(height: 4),
                           const Text(
-                            'Попробуйте изменить запрос или фильтр',
+                            'Try changing your search query or filter',
                             style: TextStyle(fontSize: 13, color: AppTheme.textSecondary),
                           ),
                         ],
@@ -446,7 +446,7 @@ class _HandbookTabState extends State<HandbookTab> {
                                               Icon(Icons.check, size: 12, color: AppTheme.primary),
                                               SizedBox(width: 3),
                                               Text(
-                                                'Изучено',
+                                                'Studied',
                                                 style: TextStyle(
                                                   fontSize: 11,
                                                   fontWeight: FontWeight.bold,
@@ -489,7 +489,7 @@ class _HandbookTabState extends State<HandbookTab> {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Text(
-                                        'Читать подробнее',
+                                        'Read full topic',
                                         style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold,
@@ -514,4 +514,3 @@ class _HandbookTabState extends State<HandbookTab> {
     );
   }
 }
-

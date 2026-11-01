@@ -141,7 +141,7 @@ class _SplashScreenState extends State<SplashScreen>
                     ),
                     const SizedBox(height: 20),
                     const Text(
-                      'ПРАВИЛА',
+                      'RULES',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,

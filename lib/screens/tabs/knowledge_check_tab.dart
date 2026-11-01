@@ -11,7 +11,7 @@ class KnowledgeCheckTab extends StatefulWidget {
 
 class _KnowledgeCheckTabState extends State<KnowledgeCheckTab> {
   final _service = SportsRulesService();
-  String _selectedSport = 'Футбол';
+  String _selectedSport = 'Football';
   int _currentQuestionIndex = 0;
   int _selectedOption = -1;
   bool _answered = false;
@@ -71,7 +71,7 @@ class _KnowledgeCheckTabState extends State<KnowledgeCheckTab> {
                     ),
                     const SizedBox(height: 16),
                     const Text(
-                      'Тест завершён!',
+                      'Quiz Completed!',
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
@@ -80,7 +80,7 @@ class _KnowledgeCheckTabState extends State<KnowledgeCheckTab> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Правильных ответов: $_correctCount из ${questions.length}',
+                      'Correct answers: $_correctCount of ${questions.length}',
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -89,7 +89,7 @@ class _KnowledgeCheckTabState extends State<KnowledgeCheckTab> {
                     ),
                     const SizedBox(height: 12),
                     const Text(
-                      'Рекомендуем повторить материалы в «Справочнике» для закрепления правил.',
+                      'Review topics in the Handbook tab to strengthen your rules knowledge.',
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 13, color: AppTheme.textSecondary, height: 1.4),
                     ),
@@ -106,7 +106,7 @@ class _KnowledgeCheckTabState extends State<KnowledgeCheckTab> {
                         ),
                         onPressed: _restartTest,
                         child: const Text(
-                          'Пройти тест ещё раз',
+                          'Retake Quiz',
                           style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
                         ),
                       ),
@@ -120,7 +120,18 @@ class _KnowledgeCheckTabState extends State<KnowledgeCheckTab> {
       );
     }
 
-    final currentQ = questions[_currentQuestionIndex];
+    final currentQ = questions.isNotEmpty && _currentQuestionIndex < questions.length
+        ? questions[_currentQuestionIndex]
+        : null;
+
+    if (currentQ == null) {
+      return Scaffold(
+        backgroundColor: AppTheme.background,
+        body: const Center(
+          child: Text('No questions available.', style: TextStyle(color: AppTheme.textSecondary)),
+        ),
+      );
+    }
 
     return Scaffold(
       backgroundColor: AppTheme.background,
@@ -131,7 +142,7 @@ class _KnowledgeCheckTabState extends State<KnowledgeCheckTab> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Проверка знаний',
+                'Knowledge Check',
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
@@ -140,14 +151,14 @@ class _KnowledgeCheckTabState extends State<KnowledgeCheckTab> {
               ),
               const SizedBox(height: 2),
               const Text(
-                'Тесты по правилам командных видов спорта (без таймера)',
+                'Untimed quizzes on team sports rules',
                 style: TextStyle(fontSize: 13, color: AppTheme.textSecondary),
               ),
               const SizedBox(height: 16),
 
               // Sport selector
               Row(
-                children: ['Футбол', 'Баскетбол', 'Волейбол', 'Теннис'].map((sp) {
+                children: ['Football', 'Basketball', 'Volleyball', 'Tennis'].map((sp) {
                   final isSelected = sp == _selectedSport;
                   return Expanded(
                     child: Padding(
@@ -187,11 +198,11 @@ class _KnowledgeCheckTabState extends State<KnowledgeCheckTab> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Вопрос ${_currentQuestionIndex + 1} из ${questions.length}',
+                    'Question ${_currentQuestionIndex + 1} of ${questions.length}',
                     style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: AppTheme.textMain),
                   ),
                   Text(
-                    'Верно: $_correctCount',
+                    'Correct: $_correctCount',
                     style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: AppTheme.primary),
                   ),
                 ],
@@ -326,8 +337,8 @@ class _KnowledgeCheckTabState extends State<KnowledgeCheckTab> {
                                 const SizedBox(width: 6),
                                 Text(
                                   _selectedOption == currentQ.correctIndex
-                                      ? 'Правильно!'
-                                      : 'Посмотрите объяснение:',
+                                      ? 'Correct!'
+                                      : 'Explanation:',
                                   style: TextStyle(
                                     fontSize: 13,
                                     fontWeight: FontWeight.bold,
@@ -372,7 +383,7 @@ class _KnowledgeCheckTabState extends State<KnowledgeCheckTab> {
                             }
                           },
                           child: Text(
-                            _currentQuestionIndex < questions.length - 1 ? 'Следующий вопрос' : 'Завершить тест',
+                            _currentQuestionIndex < questions.length - 1 ? 'Next Question' : 'Complete Quiz',
                             style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
                           ),
                         ),
