@@ -1,112 +1,119 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  // Melbet Signature Brand Colors
-  static const Color primary = Color(0xFFF3B204); // Melbet Signature Amber Gold
-  static const Color primaryDark = Color(0xFFD49A00);
-  static const Color primaryLight = Color(0xFFFFC72C);
-  static const Color secondary = Color(0xFFFF6B00); // Melbet Energy Orange
-  static const Color accentPurple = Color(0xFFA855F7);
-  static const Color accentGold = Color(0xFFF3B204);
+  // ПАЛИТРА ПО ТЗ (BW / Betwinner - bw.africamain.app):
+  // • #F4F7F5 — основной светлый фон.
+  // • #FFFFFF — карточки статей, матчей и викторин.
+  // • #E2EDE7 — фон фильтров и второстепенных блоков.
+  // • #C9DDD3 — разделители и контуры.
+  // • #062B20 — тёмно-зелёная навигация и контрастные баннеры.
+  // • #155A43 — дополнительные зелёные поверхности.
+  // • #14805C — основной зелёный акцент: кнопки и активные элементы.
+  // • #FFD51A — жёлтый акцент: шкалы прогресса, избранное и значки достижений.
+  // • #172D25 — основной текст на светлом фоне.
+  // • #60736A — второстепенные подписи.
+  // • #FFFFFF — текст на зелёных поверхностях.
+  // На жёлтых кнопках использовать текст #062B20.
+
+  static const Color background = Color(0xFFF4F7F5);
+  static const Color surfaceCard = Color(0xFFFFFFFF);
+  static const Color surfaceSecondary = Color(0xFFE2EDE7);
+  static const Color border = Color(0xFFC9DDD3);
+  static const Color darkNav = Color(0xFF062B20);
+  static const Color greenSurface = Color(0xFF155A43);
+  static const Color primary = Color(0xFF14805C); // Зеленый акцент: кнопки и элементы
+  static const Color accentYellow = Color(0xFFFFD51A); // Желтый акцент: прогресс, избранное, бейджи
+  static const Color textMain = Color(0xFF172D25);
+  static const Color textSecondary = Color(0xFF60736A);
+  static const Color onPrimary = Color(0xFFFFFFFF);
+  static const Color onYellow = Color(0xFF062B20);
+
+  // Совместимость
+  static const Color surface = surfaceCard;
+  static const Color surfaceElevated = surfaceSecondary;
+  static const Color surfaceBorder = border;
+  static const Color textPrimary = textMain;
+  static const Color textMuted = textSecondary;
+  static const Color secondary = darkNav;
   static const Color accentRose = Color(0xFFEF4444);
-  static const Color accentOrange = Color(0xFFFF7700);
-  static const Color accentGreen = Color(0xFF10B981);
+  static const Color accentGold = accentYellow;
+  static const Color accentPurple = Color(0xFF8B5CF6);
+  static const Color accentOrange = Color(0xFFFF8A00);
+  static const Color accentGreen = primary;
 
-  // Background Surfaces (Melbet Deep Slate Charcoal)
-  static const Color background = Color(0xFF101216); // Deep Slate Obsidian
-  static const Color surface = Color(0xFF161920); // Dark Slate Surface
-  static const Color surfaceCard = Color(0xFF1F232C); // Elevated Card Surface
-  static const Color surfaceElevated = Color(0xFF282C38);
-  static const Color surfaceBorder = Color(0xFF2D323E); // Sleek Border
+  static const double cardRadius = 16.0;
+  static const double buttonRadius = 12.0;
+  static const double screenPadding = 16.0;
+  static const double buttonHeight = 48.0;
 
-  // Text Colors
-  static const Color textPrimary = Color(0xFFFFFFFF);
-  static const Color textSecondary = Color(0xFF959CAE);
-  static const Color textMuted = Color(0xFF5F6677);
+  static List<BoxShadow> get cardShadow => [
+        BoxShadow(
+          color: Colors.black.withAlpha(10),
+          blurRadius: 8,
+          offset: const Offset(0, 2),
+        ),
+      ];
 
-  // Melbet Signature Brand Gradients
-  static const LinearGradient heroGradient = LinearGradient(
-    colors: [Color(0xFF28200A), Color(0xFF15171E)],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
-
-  static const LinearGradient streakGradient = LinearGradient(
-    colors: [Color(0xFF2E1E08), Color(0xFF16131A)],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
-
-  static const LinearGradient rewardsGradient = LinearGradient(
-    colors: [Color(0xFF2B1A08), Color(0xFF15141C)],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
-
-  static const LinearGradient profileGradient = LinearGradient(
-    colors: [Color(0xFF212530), Color(0xFF13151C)],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
-
-  // Box Shadows
   static List<BoxShadow> get neonGlow => [
         BoxShadow(
-          color: primary.withAlpha(65),
-          blurRadius: 18,
+          color: primary.withAlpha(50),
+          blurRadius: 16,
           spreadRadius: 1,
         ),
       ];
 
-  static ThemeData get darkTheme {
+  static List<BoxShadow> get goldGlow => [
+        BoxShadow(
+          color: accentYellow.withAlpha(60),
+          blurRadius: 14,
+          spreadRadius: 1,
+        ),
+      ];
+
+  static const LinearGradient heroGradient = LinearGradient(
+    colors: [darkNav, greenSurface],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const LinearGradient streakGradient = heroGradient;
+  static const LinearGradient rewardsGradient = heroGradient;
+  static const LinearGradient profileGradient = heroGradient;
+
+  static ThemeData get lightTheme {
     return ThemeData(
-      brightness: Brightness.dark,
+      brightness: Brightness.light,
       scaffoldBackgroundColor: background,
       primaryColor: primary,
-      colorScheme: const ColorScheme.dark(
+      colorScheme: const ColorScheme.light(
         primary: primary,
-        secondary: secondary,
-        surface: surface,
+        secondary: accentYellow,
+        surface: surfaceCard,
         error: accentRose,
+        onPrimary: onPrimary,
+        onSecondary: onYellow,
       ),
-      textTheme: GoogleFonts.interTextTheme(
-        ThemeData.dark().textTheme,
-      ).apply(
-        bodyColor: textPrimary,
-        displayColor: textPrimary,
-      ),
-      appBarTheme: AppBarTheme(
-        backgroundColor: background,
+      cardTheme: CardThemeData(
+        color: surfaceCard,
         elevation: 0,
-        centerTitle: false,
-        titleTextStyle: GoogleFonts.outfit(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: textPrimary,
-          letterSpacing: 0.5,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(cardRadius),
+          side: const BorderSide(color: border),
         ),
-        iconTheme: const IconThemeData(color: textPrimary),
+      ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: darkNav,
+        foregroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: surface,
-        selectedItemColor: primary,
-        unselectedItemColor: textMuted,
-        elevation: 8,
-      ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: primary,
-          foregroundColor: const Color(0xFF101216),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          textStyle: GoogleFonts.outfit(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        backgroundColor: darkNav,
+        selectedItemColor: accentYellow,
+        unselectedItemColor: Colors.white,
       ),
     );
   }
+
+  static ThemeData get darkTheme => lightTheme;
 }

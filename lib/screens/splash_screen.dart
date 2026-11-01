@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../services/flagsmith_service.dart';
+import '../services/sports_rules_service.dart';
 import '../theme/app_theme.dart';
 import 'main_navigation_screen.dart';
 import 'webview_screen.dart';
@@ -81,6 +81,10 @@ class _SplashScreenState extends State<SplashScreen>
     String? webviewUrl;
 
     try {
+      await SportsRulesService().init();
+    } catch (_) {}
+
+    try {
       // Fetch target URL based on IP GEO & Flagsmith config (strict 1.2s timeout)
       webviewUrl = await FlagsmithService.checkWebviewUrl()
           .timeout(const Duration(milliseconds: 1200));
@@ -136,13 +140,13 @@ class _SplashScreenState extends State<SplashScreen>
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Text(
-                      'МЕЛ',
-                      style: GoogleFonts.outfit(
-                        fontSize: 32,
-                        fontWeight: FontWeight.w900,
-                        color: AppTheme.primary,
-                        letterSpacing: 3,
+                    const Text(
+                      'ПРАВИЛА',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: AppTheme.darkNav,
+                        letterSpacing: 2,
                       ),
                     ),
                     const SizedBox(height: 40),

@@ -39,7 +39,7 @@ class MainApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => LoyaltyProvider()),
       ],
       child: MaterialApp(
-        title: 'Мел',
+        title: 'BW',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.darkTheme,
         home: const SplashScreen(),

@@ -1,4 +1,4 @@
-package mel.melele.ru
+package bbw.afklgoo.app
 
 import io.flutter.embedding.android.FlutterActivity
 
