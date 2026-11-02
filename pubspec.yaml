@@ -33,7 +33,7 @@ dependencies:
   google_fonts: ^8.2.1
   webview_flutter: ^4.14.1
   shared_preferences: ^2.5.5
-  flagsmith: ^6.1.1
+  flagsmith: ^6.2.1
   http: ^1.2.1
   flutter:
     sdk: flutter
